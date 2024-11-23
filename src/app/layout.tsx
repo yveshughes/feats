@@ -1,7 +1,6 @@
 import './globals.css'
 import { Shell } from '@/components/layout/Shell'
 import { Inter } from 'next/font/google'
-import { SessionProvider } from '@/components/providers/SessionProvider'
 import Navbar from '@/components/ui/navbar'
 import { Toaster } from '@/components/ui/toaster'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
@@ -36,11 +35,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`min-h-screen bg-background font-sans antialiased ${inter.className}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <SessionProvider>
-            <Navbar />
-            <Shell>{children}</Shell>
-            <Toaster />
-          </SessionProvider>
+          <Navbar />
+          <Shell>{children}</Shell>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
