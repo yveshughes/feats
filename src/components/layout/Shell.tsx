@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import Footer from './Footer';
+import NewFooter from './NewFooter';
 
 interface ShellProps {
   children: ReactNode;
@@ -11,9 +11,10 @@ export function Shell({ children }: ShellProps) {
       <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {children}
       </main>
-      <Footer />
+      <NewFooter />
     </div>
   );
 }
+
 
 
