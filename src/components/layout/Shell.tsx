@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import Footer from '@/components/layout/Footer';
+import Footer from './Footer';
 
 interface ShellProps {
   children: ReactNode;
