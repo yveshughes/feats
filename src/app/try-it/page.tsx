@@ -6,6 +6,7 @@ import { ResultsCard } from '@/components/shared/ResultsCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import ImageUpload from '@/components/ui/image-upload';
+import { useToast } from "@/components/ui/use-toast";
 
 // Import Swiper styles
 import 'swiper/css';
@@ -32,6 +33,7 @@ export default function TryItPage() {
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [analysisResults, setAnalysisResults] = useState<Scale[]>([sampleScale]);
+  const { toast } = useToast();
 
   useEffect(() => {
     const checkIfMobile = () => {
@@ -49,12 +51,44 @@ export default function TryItPage() {
   const handleImageSelect = async (imageData: string) => {
     setUploadedImage(imageData);
     setIsLoading(true);
-    
-    // TODO: Add API call to backend here
-    setTimeout(() => {
-      setAnalysisResults([sampleScale]);
+
+    try {
+      // Convert base64 to blob
+      const base64Response = await fetch(imageData);
+      const blob = await base64Response.blob();
+
+      // Create form data
+      const formData = new FormData();
+      formData.append('image', blob, 'image.jpg');
+
+      // Send to API
+      const response = await fetch('/api/analyze', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Analysis failed');
+      }
+
+      const data = await response.json();
+      setAnalysisResults(data.scales);
+      
+      toast({
+        title: "Analysis Complete",
+        description: "Your image has been analyzed successfully.",
+      });
+
+    } catch (error) {
+      console.error('Error analyzing image:', error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to analyze image. Please try again.",
+      });
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   return (
