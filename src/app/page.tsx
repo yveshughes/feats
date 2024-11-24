@@ -13,7 +13,7 @@ export default function Home() {
           {/* Left image - visible only on desktop */}
           <div className="hidden md:block absolute left-1/2 transform -translate-x-full -rotate-6 z-0">
             <Image
-              src="/images/samples/treesample1.png"
+              src="/images/treesample1.png"
               alt="Sample Artwork 1"
               width={250}
               height={250}
@@ -35,7 +35,7 @@ export default function Home() {
           {/* Right image - visible only on desktop */}
           <div className="hidden md:block absolute left-1/2 transform rotate-6 z-0">
             <Image
-              src="/images/samples/treesample1.png"
+              src="/images/treesample1r.png"
               alt="Sample Artwork 2"
               width={250}
               height={250}
