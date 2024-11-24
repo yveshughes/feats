@@ -1,19 +1,37 @@
+'use client'
+
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ResultsCard } from '@/components/shared/ResultsCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import { scales } from '@/data/scales';
 import ImageUpload from '@/components/ui/image-upload';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+interface Scale {
+  title: string;
+  description: string;
+  rating: number;
+  explanation: string;
+  imageUrl: string;
+}
+
+const sampleScale: Scale = {
+  title: "Prominence of Color",
+  description: "Evaluates how color is used throughout the artwork, including intensity and variety.",
+  rating: 4,
+  explanation: "Sample explanation for color prominence",
+  imageUrl: "/images/scales/color.svg"
+};
+
 export default function TryItPage() {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [analysisResults, setAnalysisResults] = useState<Scale[]>([sampleScale]);
 
   useEffect(() => {
     const checkIfMobile = () => {
@@ -33,9 +51,10 @@ export default function TryItPage() {
     setIsLoading(true);
     
     // TODO: Add API call to backend here
-    // This will be implemented in the next task
-    
-    setIsLoading(false);
+    setTimeout(() => {
+      setAnalysisResults([sampleScale]);
+      setIsLoading(false);
+    }, 1000);
   };
 
   return (
@@ -81,7 +100,7 @@ export default function TryItPage() {
               slidesPerView={1}
               pagination={{ clickable: true }}
             >
-              {scales.map((scale) => (
+              {analysisResults.map((scale) => (
                 <SwiperSlide key={scale.title}>
                   <ResultsCard
                     title={scale.title}
@@ -95,7 +114,7 @@ export default function TryItPage() {
             </Swiper>
           ) : (
             <div className="space-y-6">
-              {scales.map((scale) => (
+              {analysisResults.map((scale) => (
                 <ResultsCard
                   key={scale.title}
                   title={scale.title}
