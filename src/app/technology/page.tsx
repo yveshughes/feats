@@ -46,19 +46,19 @@ export default function TechnologyPage() {
       <div className="flex flex-col lg:flex-row gap-8">
         <div className="w-full lg:w-1/2 space-y-6">
           {technologies.map((tech) => (
-            <Card key={tech.name} className="h-full">
+            <Card key={tech.name} className="flex flex-col">
               <CardHeader>
                 <CardTitle>{tech.name}</CardTitle>
                 <CardDescription>{tech.description}</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-grow">
                 <p className="text-sm text-gray-600">{tech.details}</p>
               </CardContent>
             </Card>
           ))}
         </div>
         <div className="w-full lg:w-1/2 lg:sticky lg:top-8 self-start">
-          <Card className="h-full">
+          <Card>
             <CardHeader>
               <CardTitle>Technology Stack Diagram</CardTitle>
             </CardHeader>
