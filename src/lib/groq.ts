@@ -1,26 +1,41 @@
 import type { InferenceResult } from '@/types/analysis';
 
 export async function runInference(imageUrl: string): Promise<InferenceResult> {
-  console.log(`Running inference on image: ${imageUrl}`);
-  
-  try {
-    // TODO: Implement actual Groq/Llama inference
-    // For now, return mock data that includes the imageUrl in the explanation
-    return {
-      scales: [
-        {
-          title: "Color Usage",
-          rating: "4/5",
-          description: "Evaluation of color application and harmony",
-          explanation: `Analysis of image at ${imageUrl} shows strong color usage with balanced composition and harmonious palette selection.`
-        }
-        // Add more mock scales as needed
-      ],
-      processingTime: 1.5,
-      modelVersion: "llama-2-70b-v1"
-    };
-  } catch (error) {
-    console.error(`Error running inference on ${imageUrl}:`, error);
-    throw error;
-  }
+  // TODO: Implement actual Groq inference logic here
+  // This should interact with the Groq API to perform inference on the image
+  console.log(`Performing inference on image: ${imageUrl}`);
+
+  // Placeholder implementation
+  return {
+    scales: [
+      {
+        title: "Prominence of Color",
+        rating: "4/5",
+        description: "Evaluates how color is used throughout the artwork, including intensity and variety.",
+        explanation: "The image shows a vibrant use of colors with good variety."
+      },
+      {
+        title: "Composition",
+        rating: "3/5",
+        description: "Assesses the arrangement and balance of elements in the artwork.",
+        explanation: "The composition shows a decent balance, but there's room for improvement in element placement."
+      },
+      {
+        title: "Emotional Expression",
+        rating: "4/5",
+        description: "Evaluates the artwork's ability to convey emotions or mood.",
+        explanation: "The piece effectively communicates a sense of calm and introspection."
+      }
+    ],
+    processingTime: 1.5, // seconds
+    modelVersion: "llama-v2"
+  };
 }
+
+export async function performInference(imageData: string): Promise<InferenceResult> {
+  // In a real implementation, you might need to process imageData before passing it to runInference
+  // For now, we're just passing it through
+  return runInference(imageData);
+}
+
+
