@@ -2,15 +2,15 @@ import React from 'react';
 
 const NewFooter: React.FC = () => {
   return (
-    <footer className="bg-gray-50 border-t border-gray-200">
+    <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="md:flex md:items-center md:justify-between">
           <div className="flex justify-center md:order-2">
-            <a
+            
               href="https://github.com/HelpForTraumaApp/feats-app"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-gray-500 flex items-center space-x-2"
+              className="text-gray-400 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-300 flex items-center space-x-2"
             >
               <span className="sr-only">GitHub</span>
               <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">
@@ -20,7 +20,7 @@ const NewFooter: React.FC = () => {
             </a>
           </div>
           <div className="mt-8 md:mt-0 md:order-1">
-            <p className="text-center text-base text-gray-400">
+            <p className="text-center text-base text-gray-400 dark:text-gray-500">
               &copy; {new Date().getFullYear()} FEATS. All rights reserved.
             </p>
           </div>
@@ -31,4 +31,3 @@ const NewFooter: React.FC = () => {
 };
 
 export default NewFooter;
-
