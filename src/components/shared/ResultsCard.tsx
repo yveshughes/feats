@@ -1,5 +1,4 @@
 'use client';
-
 import React, { memo } from 'react';
 import Image from 'next/image';
 import { motion, HTMLMotionProps } from 'framer-motion';
@@ -34,7 +33,7 @@ const ResultsCardComponent = ({
 
   const formatRating = (rating?: number) => {
     if (rating === undefined) return '';
-    return `${rating.toString().padStart(2, '0')}/05`;
+    return `${rating}/5`;
   };
 
   return (
@@ -72,7 +71,7 @@ const ResultsCardComponent = ({
         </div>
         <div className="flex-grow min-w-0">
           <h3 className="text-lg font-semibold mb-2 text-gray-900">{title}</h3>
-          <p className="text-sm text-gray-600 mb-2 line-clamp-2">{description}</p>
+          <p className="text-sm text-gray-600 mb-2">{description}</p>
         </div>
       </div>
 
