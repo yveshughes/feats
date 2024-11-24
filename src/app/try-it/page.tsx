@@ -1,14 +1,10 @@
-'use client'
-
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Camera } from 'lucide-react';
 import { ResultsCard } from '@/components/shared/ResultsCard';
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import { scales } from '@/data/scales';
+import ImageUpload from '@/components/ui/image-upload';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -17,6 +13,7 @@ import 'swiper/css/pagination';
 export default function TryItPage() {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const checkIfMobile = () => {
@@ -31,15 +28,14 @@ export default function TryItPage() {
     };
   }, []);
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setUploadedImage(e.target?.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
+  const handleImageSelect = async (imageData: string) => {
+    setUploadedImage(imageData);
+    setIsLoading(true);
+    
+    // TODO: Add API call to backend here
+    // This will be implemented in the next task
+    
+    setIsLoading(false);
   };
 
   return (
@@ -53,37 +49,10 @@ export default function TryItPage() {
         </p>
 
         <div className="max-w-md mx-auto mb-4 sm:mb-12">
-          <div className="block sm:hidden">
-            <Button
-              type="button"
-              onClick={() => document.getElementById('image-upload')?.click()}
-              className="flex items-center justify-center w-full bg-blue-600 text-white hover:bg-blue-700 text-lg py-4 shadow-lg"
-              aria-label="Capture Image"
-            >
-              <Camera className="mr-2 h-6 w-6" />
-              Capture Image
-            </Button>
-          </div>
-          <div className="hidden sm:flex items-center space-x-4">
-            <Input
-              id="image-upload"
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              className="flex-grow border-2 border-blue-500 rounded-md"
-            />
-            <Button
-              type="button"
-              onClick={() => document.getElementById('image-upload')?.click()}
-              className="bg-blue-600 text-white hover:bg-blue-700 text-lg py-4 px-8 shadow-lg whitespace-nowrap"
-              aria-label="Add Image"
-            >
-              Add Image
-            </Button>
-          </div>
-          <p className="mt-2 text-sm text-gray-500 hidden sm:block">
-            Supported formats: JPG, PNG, GIF (max 5MB)
-          </p>
+          <ImageUpload 
+            onImageSelect={handleImageSelect}
+            className="w-full"
+          />
         </div>
       </div>
 
@@ -93,15 +62,19 @@ export default function TryItPage() {
             <Image
               src={uploadedImage || "/images/treesample1.png"}
               alt={uploadedImage ? "Uploaded artwork" : "Sample artwork"}
-              layout="fill"
-              objectFit="contain"
-              className="rounded-lg"
-              loading="lazy"
+              fill
+              className="rounded-lg object-contain"
+              priority={!uploadedImage}
+              loading={uploadedImage ? "lazy" : undefined}
             />
           </div>
         </div>
         <div className="lg:w-1/2">
-          {isMobile ? (
+          {isLoading ? (
+            <div className="flex items-center justify-center h-64">
+              <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+            </div>
+          ) : isMobile ? (
             <Swiper
               modules={[Pagination]}
               spaceBetween={20}
@@ -139,4 +112,3 @@ export default function TryItPage() {
     </div>
   );
 }
-
