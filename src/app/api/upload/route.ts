@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAkashClient } from '@/lib/akash';
 import { scales } from '@/data/scales';
+import { types } from 'cassandra-driver';
+import { storeImageData, storeAnalysisResult, ImageData, AnalysisResult } from '@/lib/datastax';
 
 export async function POST(request: NextRequest) {
   try {
@@ -26,23 +28,48 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(await image.arrayBuffer());
 
     try {
-      // Get Akash client
+      // Get Akash client and upload image
       const client = await getAkashClient();
       const imageUrl = await client.uploadImage(buffer);
+
+      // Store image data in Datastax
+      const imageId = types.Uuid.random();
+      const imageData: ImageData = {
+        id: imageId,
+        userId: wallet,
+        imageUrl: imageUrl,
+        createdAt: new Date(),
+      };
+      await storeImageData(imageData);
+
+      // For now, we'll use mock scales. In the future, this would be replaced with actual AI analysis.
+      const analysisResult: AnalysisResult = {
+        id: types.Uuid.random(),
+        imageId: imageId,
+        scales: scales.map(scale => ({
+          title: scale.title,
+          description: scale.description,
+          rating: parseInt(scale.rating.split('/')[0]),
+          explanation: scale.explanation,
+        })),
+        createdAt: new Date(),
+      };
+      await storeAnalysisResult(analysisResult);
 
       return NextResponse.json({
         success: true,
         imageUrl,
-        scales: scales
+        imageId: imageId.toString(),
+        scales: analysisResult.scales,
       });
-    } catch (akashError) {
-      console.error('Akash error:', akashError);
-      // Fall back to default scales if Akash upload fails
+    } catch (error) {
+      console.error('Error:', error);
+      // Fall back to default scales if there's an error
       return NextResponse.json({
         success: true,
         imageUrl: null,
         scales: scales,
-        message: "Unable to upload to Akash Network. Using alternate analysis."
+        message: "An error occurred. Using default analysis.",
       });
     }
 
@@ -54,6 +81,14 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+
+
+
+
+
+
+
 
 
 
