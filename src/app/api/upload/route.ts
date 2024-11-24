@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAkashClient } from '@/lib/akash';
-import { scales } from '@/data/scales';
 import { types } from 'cassandra-driver';
-import { storeImageData, storeAnalysisResult, ImageData, AnalysisResult } from '@/lib/datastax';
+import { storeImageData, storeAnalysisResult, ImageData, AnalysisResult as DatastaxAnalysisResult } from '@/lib/datastax';
+import { analyzeImage, AnalysisResult as GroqAnalysisResult } from '@/lib/groq';
 
 export async function POST(request: NextRequest) {
   try {
@@ -42,37 +42,31 @@ export async function POST(request: NextRequest) {
       };
       await storeImageData(imageData);
 
-      // For now, we'll use mock scales. In the future, this would be replaced with actual AI analysis.
-      const analysisResult: AnalysisResult = {
+      // Analyze image using Groq
+      const analysisResult: GroqAnalysisResult = await analyzeImage(imageUrl);
+
+      // Store analysis result in Datastax
+      const result: DatastaxAnalysisResult = {
         id: types.Uuid.random(),
         imageId: imageId,
-        scales: scales.map(scale => ({
-          title: scale.title,
-          description: scale.description,
-          rating: parseInt(scale.rating.split('/')[0]),
-          explanation: scale.explanation,
-        })),
+        scales: analysisResult.scales,
         createdAt: new Date(),
       };
-      await storeAnalysisResult(analysisResult);
+      await storeAnalysisResult(result);
 
       return NextResponse.json({
         success: true,
         imageUrl,
         imageId: imageId.toString(),
-        scales: analysisResult.scales,
+        scales: result.scales,
       });
     } catch (error) {
       console.error('Error:', error);
-      // Fall back to default scales if there's an error
-      return NextResponse.json({
-        success: true,
-        imageUrl: null,
-        scales: scales,
-        message: "An error occurred. Using default analysis.",
-      });
+      return NextResponse.json(
+        { error: 'Failed to process and analyze image' },
+        { status: 500 }
+      );
     }
-
   } catch (error) {
     console.error('Error processing upload:', error);
     return NextResponse.json(
@@ -81,6 +75,11 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+
+
+
+
 
 
 

@@ -1,41 +1,90 @@
-import type { InferenceResult } from '@/types/analysis';
+import { Groq } from 'groq-sdk';
 
-export async function runInference(imageUrl: string): Promise<InferenceResult> {
-  // TODO: Implement actual Groq inference logic here
-  // This should interact with the Groq API to perform inference on the image
-  console.log(`Performing inference on image: ${imageUrl}`);
+let groqClient: Groq;
 
-  // Placeholder implementation
-  return {
-    scales: [
-      {
-        title: "Prominence of Color",
-        rating: "4/5",
-        description: "Evaluates how color is used throughout the artwork, including intensity and variety.",
-        explanation: "The image shows a vibrant use of colors with good variety."
-      },
-      {
-        title: "Composition",
-        rating: "3/5",
-        description: "Assesses the arrangement and balance of elements in the artwork.",
-        explanation: "The composition shows a decent balance, but there's room for improvement in element placement."
-      },
-      {
-        title: "Emotional Expression",
-        rating: "4/5",
-        description: "Evaluates the artwork's ability to convey emotions or mood.",
-        explanation: "The piece effectively communicates a sense of calm and introspection."
-      }
-    ],
-    processingTime: 1.5, // seconds
-    modelVersion: "llama-v2"
-  };
+export async function getGroqClient() {
+  if (groqClient) return groqClient;
+
+  const apiKey = process.env.GROQ_API_KEY;
+
+  if (!apiKey) {
+    throw new Error("Groq API key is not set in environment variables");
+  }
+
+  groqClient = new Groq({
+    apiKey: apiKey,
+  });
+
+  return groqClient;
 }
 
-export async function performInference(imageData: string): Promise<InferenceResult> {
-  // In a real implementation, you might need to process imageData before passing it to runInference
-  // For now, we're just passing it through
-  return runInference(imageData);
+export interface AnalysisScale {
+  title: string;
+  description: string;
+  rating: number;
+  explanation: string;
 }
+
+export interface AnalysisResult {
+  scales: AnalysisScale[];
+}
+
+export async function analyzeImage(imageUrl: string): Promise<AnalysisResult> {
+  const client = await getGroqClient();
+
+  const prompt = `Analyze the following image: ${imageUrl}
+
+  Provide an analysis based on the FEATS (Formal Elements Art Therapy Scale) criteria:
+  1. Prominence of Color
+  2. Color Fit
+  3. Implied Energy
+  4. Space
+  5. Integration
+  6. Logic
+  7. Realism
+  8. Problem-Solving
+  9. Developmental Level
+  10. Details of Objects & Environment
+  11. Line Quality
+  12. Person
+  13. Rotation
+  14. Perseveration
+
+  For each criterion, provide:
+  - A title (the criterion name)
+  - A brief description of what the criterion measures
+  - A rating from 0 to 5
+  - A brief explanation for the rating
+
+  Format the response as a JSON object with the following structure:
+  {
+    "scales": [
+      {
+        "title": "Criterion Name",
+        "description": "Brief description of what this criterion measures",
+        "rating": 0-5,
+        "explanation": "Brief explanation for the rating"
+      },
+      ...
+    ]
+  }`;
+
+  const chatCompletion = await client.chat.completions.create({
+    messages: [{ role: 'user', content: prompt }],
+    model: 'llama2-70b-4096',
+  });
+
+  const content = chatCompletion.choices[0].message.content;
+  if (!content) {
+    throw new Error("No content received from Groq API");
+  }
+
+  const result = JSON.parse(content) as AnalysisResult;
+  return result;
+}
+
+
+
+
 
 
