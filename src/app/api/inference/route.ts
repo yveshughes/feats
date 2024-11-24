@@ -4,21 +4,29 @@ import { performInference } from '@/lib/groq';
 export const runtime = 'edge';
 
 export async function POST(request: Request) {
-  const { image } = await request.json();
-
-  if (!image) {
-    return NextResponse.json({ error: 'No image data provided' }, { status: 400 });
-  }
-
   try {
-    const inferenceResult = await performInference(image);
-    return NextResponse.json(inferenceResult);
+    const { imageUrl } = await request.json();
+
+    if (!imageUrl) {
+      return NextResponse.json(
+        { error: 'No image URL provided' },
+        { status: 400 }
+      );
+    }
+
+    const result = await performInference(imageUrl);
+
+    return NextResponse.json({
+      success: true,
+      ...result
+    });
+
   } catch (error) {
-    console.error('Error during inference:', error);
-    return NextResponse.json({ error: 'Failed to perform inference' }, { status: 500 });
+    console.error('Inference error:', error);
+    return NextResponse.json(
+      { error: 'Failed to perform inference' },
+      { status: 500 }
+    );
   }
 }
 
-export async function GET() {
-  return NextResponse.json({ status: 'Inference API is running' });
-}
