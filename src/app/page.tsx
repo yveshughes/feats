@@ -58,18 +58,8 @@ export default function Home() {
           >
             Try It
           </Link>
-          <Link
-            href="/about"
-            className="w-full sm:w-auto bg-white text-blue-600 px-8 py-3 rounded-lg border border-blue-600 hover:bg-blue-50 transition-colors"
-          >
-            Learn More
-          </Link>
-          <Link
-            href="/signup"
-            className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            Create Free Account
-          </Link>
+          
+          
         </div>
       </section>
 
