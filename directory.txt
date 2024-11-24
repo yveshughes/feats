@@ -1,5 +1,7 @@
 .
+├── Dockerfile
 ├── README.md
+├── deploy.yml
 ├── directory.txt
 ├── next-env.d.ts
 ├── next.config.ts
@@ -32,6 +34,10 @@
 │   │   ├── treesample1.png
 │   │   └── treesample1r.png
 │   ├── next.svg
+│   ├── samples
+│   │   ├── 100082_F.png
+│   │   ├── 100082_F2.png
+│   │   └── 100563_F.png
 │   ├── technology.mermaid
 │   ├── vercel.svg
 │   └── window.svg
@@ -66,6 +72,7 @@
 │   │   └── ui
 │   │       ├── button.tsx
 │   │       ├── card.tsx
+│   │       ├── image-upload.tsx
 │   │       ├── input.tsx
 │   │       ├── navbar.tsx
 │   │       ├── spinner.tsx
@@ -73,7 +80,6 @@
 │   │       ├── toaster.tsx
 │   │       └── use-toast.ts
 │   ├── data
-│   │   └── scales.ts
 │   ├── lib
 │   │   ├── datastax.ts
 │   │   ├── groq.ts
@@ -84,4 +90,4 @@
 ├── tailwind.config.js
 └── tsconfig.json
 
-20 directories, 65 files
+21 directories, 70 files
