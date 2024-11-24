@@ -22,15 +22,6 @@ export default function Navbar() {
             </Link>
           </div>
           <div className="hidden md:flex items-center space-x-6">
-            <Link href="/about" className="text-gray-700 hover:text-gray-900">
-              About
-            </Link>
-            <Link href="/research" className="text-gray-700 hover:text-gray-900">
-              Research
-            </Link>
-            <Link href="/data" className="text-gray-700 hover:text-gray-900">
-              Data
-            </Link>
             <Link href="/technology" className="text-gray-700 hover:text-gray-900">
               Technology
             </Link>
@@ -50,15 +41,6 @@ export default function Navbar() {
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-4 sm:px-3">
-            <Link href="/about" className="block text-gray-700 hover:text-gray-900 py-2 text-base font-medium">
-              About
-            </Link>
-            <Link href="/research" className="block text-gray-700 hover:text-gray-900 py-2 text-base font-medium">
-              Research
-            </Link>
-            <Link href="/data" className="block text-gray-700 hover:text-gray-900 py-2 text-base font-medium">
-              Data
-            </Link>
             <Link href="/technology" className="block text-gray-700 hover:text-gray-900 py-2 text-base font-medium">
               Technology
             </Link>
