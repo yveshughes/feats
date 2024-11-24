@@ -52,7 +52,7 @@ export async function analyzeImage(imageUrl: string): Promise<AnalysisResult> {
 
   For each criterion, provide:
   - A title (the criterion name)
-  - A brief description of what the criterion measures
+  - A brief description of what this criterion measures
   - A rating from 0 to 5
   - A brief explanation for the rating
 
@@ -71,7 +71,7 @@ export async function analyzeImage(imageUrl: string): Promise<AnalysisResult> {
 
   const chatCompletion = await client.chat.completions.create({
     messages: [{ role: 'user', content: prompt }],
-    model: 'llama2-70b-4096',
+    model: 'llama-3.2-90b-vision-preview',
   });
 
   const content = chatCompletion.choices[0].message.content;
@@ -82,6 +82,12 @@ export async function analyzeImage(imageUrl: string): Promise<AnalysisResult> {
   const result = JSON.parse(content) as AnalysisResult;
   return result;
 }
+
+// Export analyzeImage as performInference
+export const performInference = analyzeImage;
+
+
+
 
 
 
