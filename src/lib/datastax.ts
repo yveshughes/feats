@@ -30,15 +30,17 @@ export interface ImageData {
   createdAt: Date;
 }
 
+export interface AnalysisScale {
+  title: string;
+  description: string;
+  rating: number;
+  explanation: string;
+}
+
 export interface AnalysisResult {
   id: types.Uuid;
   imageId: types.Uuid;
-  scales: {
-    title: string;
-    description: string;
-    rating: number;
-    explanation: string;
-  }[];
+  scales: AnalysisScale[];
   createdAt: Date;
 }
 
@@ -121,6 +123,8 @@ export async function getAggregateData(): Promise<AggregateData[]> {
     title: row.title
   }));
 }
+
+
 
 
 
