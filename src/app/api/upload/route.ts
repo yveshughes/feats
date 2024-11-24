@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
         success: true,
         imageUrl: null,
         scales: scales,
-        message: "Unable to upload to Akash Network. Using default analysis."
+        message: "Unable to upload to Akash Network. Using alternate analysis."
       });
     }
 
