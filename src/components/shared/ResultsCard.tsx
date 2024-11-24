@@ -7,7 +7,7 @@ import { motion, HTMLMotionProps } from 'framer-motion';
 interface ResultsCardProps extends HTMLMotionProps<'article'> {
   title: string;
   description: string;
-  rating?: string;
+  rating?: number;
   explanation?: string;
   imageUrl: string;
   className?: string;
@@ -32,6 +32,11 @@ const ResultsCardComponent = ({
     target.src = '/images/scales/fallback.svg';
   };
 
+  const formatRating = (rating?: number) => {
+    if (rating === undefined) return '';
+    return `${rating.toString().padStart(2, '0')}/05`;
+  };
+
   return (
     <motion.article
       initial="initial"
@@ -54,13 +59,13 @@ const ResultsCardComponent = ({
             priority={false}
             onError={handleImageError}
           />
-          {rating && (
+          {rating !== undefined && (
             <div 
               className="absolute inset-0 flex items-center justify-center"
-              aria-label={`Rating: ${rating}`}
+              aria-label={`Rating: ${formatRating(rating)}`}
             >
               <span className="text-black font-bold bg-white/70 rounded-full px-2 py-1 backdrop-blur-sm">
-                {rating}
+                {formatRating(rating)}
               </span>
             </div>
           )}
@@ -71,13 +76,13 @@ const ResultsCardComponent = ({
         </div>
       </div>
 
-      {(rating || explanation) && (
+      {(rating !== undefined || explanation) && (
         <hr className="w-full border-t border-gray-200 my-2" aria-hidden="true" />
       )}
 
-      {rating && (
+      {rating !== undefined && (
         <p className="text-sm font-semibold text-gray-700 mb-2 w-full">
-          <span className="sr-only">Rating:</span> {rating}
+          <span className="sr-only">Rating:</span> {formatRating(rating)}
         </p>
       )}
 
