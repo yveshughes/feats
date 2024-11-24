@@ -5,6 +5,7 @@
 ├── next.config.ts
 ├── package-lock.json
 ├── package.json
+├── postcss.config.js
 ├── postcss.config.mjs
 ├── public
 │   ├── feats-logo.png
@@ -31,6 +32,7 @@
 │   │   ├── treesample1.png
 │   │   └── treesample1r.png
 │   ├── next.svg
+│   ├── technology.mermaid
 │   ├── vercel.svg
 │   └── window.svg
 ├── src
@@ -47,9 +49,12 @@
 │   │   ├── globals.css
 │   │   ├── layout.tsx
 │   │   ├── page.tsx
+│   │   ├── technology
+│   │   │   └── page.tsx
 │   │   └── try-it
 │   │       └── page.tsx
 │   ├── components
+│   │   ├── MermaidDiagram.tsx
 │   │   ├── layout
 │   │   │   ├── NewFooter.tsx
 │   │   │   └── Shell.tsx
@@ -60,6 +65,7 @@
 │   │   │   └── ResultsCard.tsx
 │   │   └── ui
 │   │       ├── button.tsx
+│   │       ├── card.tsx
 │   │       ├── input.tsx
 │   │       ├── navbar.tsx
 │   │       ├── spinner.tsx
@@ -75,7 +81,7 @@
 │   │   └── utils.ts
 │   └── types
 │       └── analysis.ts
-├── tailwind.config.ts
+├── tailwind.config.js
 └── tsconfig.json
 
-19 directories, 60 files
+20 directories, 65 files

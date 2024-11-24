@@ -6,35 +6,35 @@ import path from 'path'
 
 export const metadata: Metadata = {
   title: 'Technology | FEATS',
-  description: 'Learn about the cutting-edge technologies powering FEATS',
+  description: 'Discover the advanced technologies powering FEATS',
 }
 
 export default function TechnologyPage() {
   const technologies = [
     {
-      name: "Akash Network",
-      description: "Decentralized cloud computing marketplace for deploying and scaling our application.",
-      details: "Akash Network provides a decentralized and cost-effective solution for hosting our application. It allows us to deploy our containerized services across a network of distributed data centers, ensuring high availability and scalability."
-    },
-    {
-      name: "DataStax",
-      description: "Scalable database solution for storing processed images, analysis results, and user data.",
-      details: "We utilize DataStax's cloud-native database to store and manage our application's data. Its distributed architecture allows us to handle large volumes of data with high performance and reliability, crucial for storing processed images and analysis results."
+      name: "Vercel and Next.js",
+      description: "Fast and responsive website for an easy user experience.",
+      details: "We build our website using Next.js, a modern web development framework, and host it on Vercel. This ensures our site is fast, responsive, and always available, making it easy for you to upload images and view your analysis results."
     },
     {
       name: "Groq",
-      description: "High-performance AI accelerators to power our Llama model inference.",
-      details: "Groq's AI accelerators significantly boost the performance of our Llama model inference. This allows us to process and analyze images quickly, providing near real-time results to our users."
+      description: "High-speed processing for quick image analysis.",
+      details: "Groq provides powerful computing hardware that quickly analyzes your uploaded images based on 14 different criteria. This means you get your analysis results promptly without long waits."
     },
     {
-      name: "Llama",
-      description: "Large language model used for analyzing images based on FEATS criteria.",
-      details: "We've fine-tuned the Llama model to understand and apply the Formal Elements Art Therapy Scale (FEATS) criteria. This powerful language model enables us to provide detailed and accurate analyses of uploaded artwork."
+      name: "DataStax",
+      description: "Secure storage for your images and analysis results.",
+      details: "DataStax safely stores your uploaded images and the analysis results. This ensures that your data is secure and can be accessed whenever you need it."
     },
     {
-      name: "Next.js",
-      description: "React framework for building our frontend application with server-side rendering capabilities.",
-      details: "Next.js forms the foundation of our frontend, offering server-side rendering for improved performance and SEO. Its file-based routing system and built-in API routes simplify our development process and enhance the overall user experience."
+      name: "Akash Network",
+      description: "Flexible computing power that scales with demand.",
+      details: "Akash Network provides the computing resources we need to run our image analysis services efficiently. It allows us to scale our services up or down based on how many people are using the app, ensuring reliability."
+    },
+    {
+      name: "LlamaStack API",
+      description: "Clear and detailed explanations of your image analysis.",
+      details: "We use the LlamaStack API to generate easy-to-understand explanations for each aspect of your image analysis. This helps you understand why each rating was given to your image."
     }
   ]
 
@@ -59,41 +59,50 @@ export default function TechnologyPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card className="w-full">
           <CardHeader>
+            <CardTitle>How Our Image Processing System Works</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-gray-600 mb-4">
+              Our system is designed to be simple and efficient, guiding your image from upload to insightful analysis smoothly.
+            </p>
+            <ol className="list-decimal list-inside space-y-2">
+              <li>
+                <strong>User Uploads an Image:</strong> You start by uploading your drawing through our easy-to-use website.
+              </li>
+              <li>
+                <strong>Initial Processing:</strong> The image is received by our servers hosted on Vercel, where initial checks are performed.
+              </li>
+              <li>
+                <strong>High-Speed Image Analysis:</strong> The image is sent to our analysis service powered by Groq hardware on the Akash Network. Here, the image is analyzed based on the 14 criteria, generating ratings for each one.
+              </li>
+              <li>
+                <strong>Data Storage:</strong> Your image and the analysis results are securely stored in DataStax. This ensures you can access your results whenever you like.
+              </li>
+              <li>
+                <strong>Generating Explanations:</strong> We use the LlamaStack API to create detailed and easy-to-understand explanations for each rating. This helps you see exactly why each score was given.
+              </li>
+              <li>
+                <strong>Delivering Results:</strong> The ratings and explanations are compiled into a clear report. This report is then presented to you on our website.
+              </li>
+            </ol>
+            <h4 className="font-semibold mt-4 mb-2">Benefits of Our System</h4>
+            <ul className="list-disc list-inside space-y-1 text-sm text-gray-600">
+              <li>Quick Results: Receive your analysis promptly without long waits.</li>
+              <li>Easy to Use: Our website is designed for a smooth and straightforward experience.</li>
+              <li>Clear Insights: Understand your analysis with detailed explanations.</li>
+              <li>Reliable and Secure: Your data is stored safely, and the system is built to be dependable.</li>
+            </ul>
+          </CardContent>
+        </Card>
+        <Card className="w-full">
+          <CardHeader>
             <CardTitle>Technology Stack Diagram</CardTitle>
           </CardHeader>
           <CardContent>
             <MermaidDiagram chart={mermaidChart} />
           </CardContent>
         </Card>
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle>How Our Image Processing System Flows</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-gray-600 mb-4">
-              Our innovative image processing system operates seamlessly from upload to insight, leveraging advanced AI and distributed computing.
-            </p>
-            <ol className="list-decimal list-inside space-y-2">
-              <li><strong>User Uploads an Image:</strong> The journey starts with users uploading an image through a user-friendly interface.</li>
-              <li><strong>Distributed Processing on the Akash Network:</strong> The image is sent to the Akash Network, ensuring scalability and efficient task distribution.</li>
-              <li><strong>Moderation for Safety:</strong> The image is passed through a Safety API for content moderation, ensuring ethical compliance.</li>
-              <li><strong>AI-Driven Analysis:</strong> The image is processed by the Groq-powered Llama Model for precise inference and analysis.</li>
-              <li><strong>Scoring and Refinement:</strong> Results are evaluated by the Scoring API and specialized workflows like FEATS Analysis add context-specific insights.</li>
-              <li><strong>Data Storage and Dashboard Integration:</strong> Refined results are securely stored in Datastax and can be queried through an integrated Research Dashboard.</li>
-              <li><strong>Persistent Memory for Long-Term Insights:</strong> With the Memory API, data is preserved for historical analysis and deeper comparisons over time.</li>
-            </ol>
-            <h4 className="font-semibold mt-4 mb-2">The Flow&apos;s Benefits</h4>
-            <ul className="list-disc list-inside space-y-1 text-sm text-gray-600">
-              <li>Streamlined Processing: From upload to actionable insight in one smooth flow.</li>
-              <li>Scalable & Efficient: Distributed computing via Akash Network handles complex tasks at scale.</li>
-              <li>AI-Powered Precision: Groq-powered models deliver high accuracy.</li>
-              <li>Ethical by Design: Built-in content moderation ensures safety and compliance.</li>
-              <li>Actionable Insights: Research dashboards and data storage provide long-term usability.</li>
-            </ul>
-          </CardContent>
-        </Card>
       </div>
     </div>
   )
 }
-
