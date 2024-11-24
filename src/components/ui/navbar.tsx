@@ -31,6 +31,9 @@ export default function Navbar() {
             <Link href="/data" className="text-gray-700 hover:text-gray-900">
               Data
             </Link>
+            <Link href="/technology" className="text-gray-700 hover:text-gray-900">
+              Technology
+            </Link>
             <Link href="/try-it">
               <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg text-lg font-semibold">
                 Try It
@@ -50,8 +53,14 @@ export default function Navbar() {
             <Link href="/about" className="block text-gray-700 hover:text-gray-900 py-2 text-base font-medium">
               About
             </Link>
+            <Link href="/research" className="block text-gray-700 hover:text-gray-900 py-2 text-base font-medium">
+              Research
+            </Link>
             <Link href="/data" className="block text-gray-700 hover:text-gray-900 py-2 text-base font-medium">
               Data
+            </Link>
+            <Link href="/technology" className="block text-gray-700 hover:text-gray-900 py-2 text-base font-medium">
+              Technology
             </Link>
             <div className="pt-2">
               <Link href="/try-it">
@@ -66,4 +75,3 @@ export default function Navbar() {
     </nav>
   )
 }
-

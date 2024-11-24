@@ -1,0 +1,15 @@
+graph TD
+    A[User] -->|Uploads Image| B[Frontend]
+    B -->|Send Image| C[Akash Network]
+    C -->|Distribute Processing| D[Llama Stack Distribution]
+    D -->|Inference API| E[Groq-powered Llama Model]
+    D -->|Agents API| F[FEATS Analysis Workflow]
+    D -->|Memory API| G[Datastax Integration]
+    D -->|Safety API| H[Content Moderation]
+    D -->|Scoring API| I[Result Evaluation]
+    E -->|Model Output| F
+    F -->|Analysis Results| I
+    I -->|Evaluated Results| G
+    G -->|Stored Results| B
+    B -->|Display Results| A
+    J[Research Dashboard] -->|Query Data| G
