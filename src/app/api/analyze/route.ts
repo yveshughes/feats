@@ -1,78 +1,62 @@
 import { NextResponse } from 'next/server';
-import { handleUpload, preprocess } from '@/lib/image-processing';
-import { runInference } from '@/lib/groq';
-import { saveAnalysis } from '@/lib/datastax';
-import type { AnalysisResult, Scale } from '@/types/analysis';
 
-export const maxDuration = 300;
-export const runtime = 'edge';
+// Types for our response
+interface AnalysisScale {
+  title: string;
+  description: string;
+  rating: number;
+  explanation: string;
+  imageUrl: string;
+}
+
+interface AnalysisResponse {
+  scales: AnalysisScale[];
+}
 
 export async function POST(request: Request) {
   try {
     const formData = await request.formData();
-    const image = formData.get('image') as File;
+    const image = formData.get('image');
 
-    if (!image) {
+    if (!image || !(image instanceof File)) {
       return NextResponse.json(
         { error: 'No image provided' },
         { status: 400 }
       );
     }
 
-    if (!image.type.startsWith('image/')) {
-      return NextResponse.json(
-        { error: 'File must be an image' },
-        { status: 400 }
-      );
-    }
-
-    if (image.size > 5 * 1024 * 1024) {
-      return NextResponse.json(
-        { error: 'Image must be less than 5MB' },
-        { status: 400 }
-      );
-    }
-
-    const processedImage = await preprocess(image);
-    const imageUrl = await handleUpload(processedImage);
-    const inferenceResult = await runInference(imageUrl);
-
-    const analysisResult: AnalysisResult = {
-      timestamp: new Date().toISOString(),
-      imageUrl,
-      scales: inferenceResult.scales.map((scale: Scale) => ({
-        title: scale.title,
-        rating: scale.rating,
-        description: scale.description,
-        explanation: scale.explanation
-      })),
-      metadata: {
-        processingTime: inferenceResult.processingTime,
-        modelVersion: inferenceResult.modelVersion,
-      }
+    // TODO: Will be replaced with actual Groq/Llama analysis
+    const mockAnalysis: AnalysisResponse = {
+      scales: [{
+        title: "Prominence of Color",
+        description: "Evaluates how color is used throughout the artwork, including intensity and variety.",
+        rating: 4,
+        explanation: "Sample explanation for color prominence",
+        imageUrl: "/images/scales/color.svg"
+      }]
     };
 
-    await saveAnalysis(analysisResult);
-    return NextResponse.json(analysisResult);
+    // TODO: Add actual image processing steps:
+    // 1. Upload to temporary storage
+    // 2. Send to Groq for processing
+    // 3. Store results in DataStax
+    // 4. Return analysis results
+
+    return NextResponse.json(mockAnalysis);
 
   } catch (error) {
     console.error('Error processing image:', error);
     return NextResponse.json(
-      { error: 'Error processing image analysis' },
+      { error: 'Error processing image' },
       { status: 500 }
     );
   }
 }
 
-export async function OPTIONS() {
+// Prevent non-POST requests
+export async function GET() {
   return NextResponse.json(
-    {},
-    {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      },
-    }
+    { error: 'Method not allowed' },
+    { status: 405 }
   );
 }
