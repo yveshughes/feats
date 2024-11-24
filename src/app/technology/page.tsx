@@ -13,28 +13,28 @@ export default function TechnologyPage() {
   const technologies = [
     {
       name: "Vercel and Next.js",
-      description: "Fast and responsive website for an easy user experience.",
-      details: "We build our website using Next.js, a modern web development framework, and host it on Vercel. This ensures our site is fast, responsive, and always available, making it easy for you to upload images and view your analysis results."
+      description: "User-friendly website interface and initial processing.",
+      details: "We built our website using Next.js, a modern web development framework, and hosted it on Vercel. This setup provided a fast, responsive, and always-available website where users could upload images and view their analysis results. Vercel also handled initial image processing and validation through serverless functions, ensuring that only appropriate images proceeded to analysis."
     },
     {
       name: "Groq",
-      description: "High-speed processing for quick image analysis.",
-      details: "Groq provides powerful computing hardware that quickly analyzes your uploaded images based on 14 different criteria. This means you get your analysis results promptly without long waits."
-    },
-    {
-      name: "DataStax",
-      description: "Secure storage for your images and analysis results.",
-      details: "DataStax safely stores your uploaded images and the analysis results. This ensures that your data is secure and can be accessed whenever you need it."
+      description: "High-performance hardware for image analysis.",
+      details: "Groq provided powerful computing hardware optimized for high-speed, intensive computations. We used Groq&#39;s hardware to perform detailed image analysis based on the 14 FEATS criteria, ensuring users received their analysis results promptly."
     },
     {
       name: "Akash Network",
-      description: "Flexible computing power that scales with demand.",
-      details: "Akash Network provides the computing resources we need to run our image analysis services efficiently. It allows us to scale our services up or down based on how many people are using the app, ensuring reliability."
+      description: "Scalable and flexible computing infrastructure.",
+      details: "Akash Network hosted our backend services that required more control over the computing environment. By deploying our image analysis pipeline on Akash, we could scale our services up or down based on demand, ensuring reliability and cost-efficiency."
+    },
+    {
+      name: "DataStax",
+      description: "Secure and scalable data storage.",
+      details: "DataStax served as our primary database for storing uploaded images, analysis results, and user data. Its distributed architecture ensured high availability and quick access to data whenever needed, keeping user information safe and accessible."
     },
     {
       name: "LlamaStack API",
-      description: "Clear and detailed explanations of your image analysis.",
-      details: "We use the LlamaStack API to generate easy-to-understand explanations for each aspect of your image analysis. This helps you understand why each rating was given to your image."
+      description: "Advanced language model for generating explanations.",
+      details: "We used the LlamaStack API to generate clear and detailed explanations for each aspect of the image analysis. It provided advanced features like safety checks, multi-step reasoning, and context management, ensuring that users understood why each rating was given to their image."
     }
   ]
 
@@ -63,34 +63,34 @@ export default function TechnologyPage() {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-gray-600 mb-4">
-              Our system is designed to be simple and efficient, guiding your image from upload to insightful analysis smoothly.
+              Our system was designed to be simple and efficient, guiding images from upload to insightful analysis smoothly.
             </p>
             <ol className="list-decimal list-inside space-y-2">
               <li>
-                <strong>User Uploads an Image:</strong> You start by uploading your drawing through our easy-to-use website.
+                Start by <strong>uploading your image</strong> on the Try It page of our website built with Next.js and hosted on Vercel.
               </li>
               <li>
-                <strong>Initial Processing:</strong> The image is received by our servers hosted on Vercel, where initial checks are performed.
+                The image undergoes <strong>initial processing and validation</strong> by our serverless functions on Vercel.
               </li>
               <li>
-                <strong>High-Speed Image Analysis:</strong> The image is sent to our analysis service powered by Groq hardware on the Akash Network. Here, the image is analyzed based on the 14 criteria, generating ratings for each one.
+                The validated image is then sent to our <strong>image analysis pipeline</strong> hosted on the Akash Network, where it is processed using Groq&#39;s high-performance hardware based on the 14 FEATS criteria.
               </li>
               <li>
-                <strong>Data Storage:</strong> Your image and the analysis results are securely stored in DataStax. This ensures you can access your results whenever you like.
+                We <strong>store the image and analysis results securely</strong> in DataStax for easy access and retrieval.
               </li>
               <li>
-                <strong>Generating Explanations:</strong> We use the LlamaStack API to create detailed and easy-to-understand explanations for each rating. This helps you see exactly why each score was given.
+                Our system uses the <strong>LlamaStack API</strong> to generate detailed explanations for each rating, ensuring clarity and understanding.
               </li>
               <li>
-                <strong>Delivering Results:</strong> The ratings and explanations are compiled into a clear report. This report is then presented to you on our website.
+                Finally, we <strong>present the results</strong> in a clear report on our website for you to review.
               </li>
             </ol>
             <h4 className="font-semibold mt-4 mb-2">Benefits of Our System</h4>
             <ul className="list-disc list-inside space-y-1 text-sm text-gray-600">
-              <li>Quick Results: Receive your analysis promptly without long waits.</li>
-              <li>Easy to Use: Our website is designed for a smooth and straightforward experience.</li>
-              <li>Clear Insights: Understand your analysis with detailed explanations.</li>
-              <li>Reliable and Secure: Your data is stored safely, and the system is built to be dependable.</li>
+              <li>Quick Results: Users received their analysis promptly without long waits.</li>
+              <li>Easy to Use: Our website was designed for a smooth and straightforward experience.</li>
+              <li>Clear Insights: Users could understand their analysis with detailed explanations.</li>
+              <li>Reliable and Secure: Data was stored safely, and the system was built to be dependable.</li>
             </ul>
           </CardContent>
         </Card>
@@ -106,3 +106,4 @@ export default function TechnologyPage() {
     </div>
   )
 }
+
