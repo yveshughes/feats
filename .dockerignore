@@ -1,37 +1,43 @@
-# Dependencies
-node_modules
-npm-debug.log
-
-# Next.js build output
-.next
-out
-
 # Version control
 .git
 .gitignore
 
-# Environment variables
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
 .env
-.env.local
-.env.development
-.env.production
+.venv
+pip-log.txt
+*.egg-info/
+.eggs/
 
-# IDE
-.vscode
-.idea
-
-# OS generated files
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
 .DS_Store
-*.pem
 
-# Debug logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Project specific
+tests/
+docs/
+*.md
+Dockerfile
+.dockerignore
+deploy.yml
 
-# Testing
-coverage
+# Docker
+.docker
 
-# Temp files
-tmp
-*.tmp
+# Node (in case there are any node files)
+node_modules/
+npm-debug.log
+
+# Build and dist
+build/
+dist/
