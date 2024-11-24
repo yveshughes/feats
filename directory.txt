@@ -1,0 +1,81 @@
+.
+├── README.md
+├── directory.txt
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public
+│   ├── feats-logo.png
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── images
+│   │   ├── scales
+│   │   │   ├── color-fit.svg
+│   │   │   ├── color.svg
+│   │   │   ├── details.svg
+│   │   │   ├── development.svg
+│   │   │   ├── energy.svg
+│   │   │   ├── environment.svg
+│   │   │   ├── integration.svg
+│   │   │   ├── intro.svg
+│   │   │   ├── line.svg
+│   │   │   ├── logic.svg
+│   │   │   ├── perseveration.svg
+│   │   │   ├── person.svg
+│   │   │   ├── problem-solving.svg
+│   │   │   ├── realism.svg
+│   │   │   ├── rotation.svg
+│   │   │   └── space.svg
+│   │   ├── treesample1.png
+│   │   └── treesample1r.png
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── src
+│   ├── app
+│   │   ├── api
+│   │   │   ├── analyze
+│   │   │   │   └── route.ts
+│   │   │   └── inference
+│   │   │       └── route.ts
+│   │   ├── favicon.ico
+│   │   ├── fonts
+│   │   │   ├── GeistMonoVF.woff
+│   │   │   └── GeistVF.woff
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── try-it
+│   │       └── page.tsx
+│   ├── components
+│   │   ├── layout
+│   │   │   ├── NewFooter.tsx
+│   │   │   └── Shell.tsx
+│   │   ├── providers
+│   │   │   ├── SessionProvider.tsx
+│   │   │   └── ThemeProvider.tsx
+│   │   ├── shared
+│   │   │   └── ResultsCard.tsx
+│   │   └── ui
+│   │       ├── button.tsx
+│   │       ├── input.tsx
+│   │       ├── navbar.tsx
+│   │       ├── spinner.tsx
+│   │       ├── toast.tsx
+│   │       ├── toaster.tsx
+│   │       └── use-toast.ts
+│   ├── data
+│   │   └── scales.ts
+│   ├── lib
+│   │   ├── datastax.ts
+│   │   ├── groq.ts
+│   │   ├── image-processing.ts
+│   │   └── utils.ts
+│   └── types
+│       └── analysis.ts
+├── tailwind.config.ts
+└── tsconfig.json
+
+19 directories, 60 files
