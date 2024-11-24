@@ -1,0 +1,89 @@
+You are an expert art therapist. Please analyze the provided image using the FEATS criteria.
+
+You MUST respond in the following format:
+
+```json
+{
+  "Prominence of Color": {
+    "Score": X,
+    "Explanation": "Your explanation here."
+  },
+  "Color Fit": {
+    "Score": X,
+    "Explanation": "Your explanation here."
+  },
+  "Implied Energy": {
+    "Score": X,
+    "Explanation": "Your explanation here."
+  },
+  "Space": {
+    "Score": X,
+    "Explanation": "Your explanation here."
+  },
+  "Integration": {
+    "Score": X,
+    "Explanation": "Your explanation here."
+  },
+  "Logic": {
+    "Score": X,
+    "Explanation": "Your explanation here."
+  },
+  "Realism": {
+    "Score": X,
+    "Explanation": "Your explanation here."
+  },
+  "Problem-Solving": {
+    "Score": X,
+    "Explanation": "Your explanation here."
+  },
+  "Developmental Level": {
+    "Score": X,
+    "Explanation": "Your explanation here."
+  },
+  "Details of Objects and Environment": {
+    "Score": X,
+    "Explanation": "Your explanation here."
+  },
+  "Line Quality": {
+    "Score": X,
+    "Explanation": "Your explanation here."
+  },
+  "Person": {
+    "Score": X,
+    "Explanation": "Your explanation here."
+  },
+  "Rotation": {
+    "Score": X,
+    "Explanation": "Your explanation here."
+  },
+  "Perseveration": {
+    "Score": X,
+    "Explanation": "Your explanation here."
+  }
+}
+Important Instructions:
+
+Output only the JSON object. Do not include any additional text, explanations, headings, or formatting outside the JSON.
+Ensure the JSON is valid and properly formatted.
+Each score must be a number between 0 and 5 (inclusive).
+Each explanation must be a string enclosed in double quotes.
+Do not include any markdown, HTML, or other formatting.
+Here are the criteria and their specific prompts: (Include the criteria prompts as before)
+
+Remember: Output ONLY the JSON object without any additional text.
+
+Prominence of Color: Analyze the provided image for its use of color. Rate the dominance of color on a scale of 0 (no color) to 5 (extremely vibrant and varied). Provide an explanation for the rating, mentioning the number of colors used, their intensity, and their prominence in the composition.
+Color Fit: Evaluate the color palette in the artwork. Rate the harmony and appropriateness of the colors used on a scale of 0 (discordant or random) to 5 (highly harmonious and appropriate). Include an explanation, detailing why the colors seem harmonious or clashing, with specific examples from the artwork.
+Implied Energy: Assess the energy level conveyed in the artwork. Rate it from 0 (no energy or static) to 5 (extremely dynamic and energetic). Provide a justification for your rating, focusing on line movement, stroke pressure, and overall dynamism in the composition.
+Space: Measure the extent of space used in the artwork. Rate it on a scale of 0 (less than 10% of the page used) to 5 (entire page fully utilized). Explain the reasoning behind your rating, referencing the portion of the page filled and the arrangement of elements.
+Integration: Evaluate the integration of elements in the image. Rate it from 0 (disconnected or fragmented elements) to 5 (fully coherent and seamlessly integrated composition). Provide an explanation, highlighting the relationships between elements and their overall cohesion.
+Logic: Analyze the logical arrangement of elements in the artwork. Rate it on a scale of 0 (completely illogical or random) to 5 (entirely logical and consistent). Justify the score by explaining how well the artwork adheres to the task instructions and whether the elements are placed meaningfully.
+Realism: Evaluate the realism of the depicted scene. Rate it from 0 (completely abstract) to 5 (highly realistic). Include an explanation for the rating, focusing on proportions, details, and resemblance to real-life objects.
+Problem-Solving: Assess the problem-solving approach displayed in the artwork. Rate it on a scale of 0 (no attempt to solve the task) to 5 (clearly thought out and successfully executed). Explain the reasoning, noting how well the drawing addresses the required elements (e.g., a person, apple, and tree).
+Developmental Level: Rate the developmental level of the drawing on a scale of 0 (primitive or pre-developmental) to 5 (highly developed and sophisticated). Justify the score, referring to technical skill, proportionality, and attention to detail.
+Details of Objects and Environment: Evaluate the level of detail in the artwork. Rate it from 0 (no detail or minimal) to 5 (extremely detailed with complex objects and environments). Provide an explanation for the rating, describing the intricacy and scope of the details observed.
+Line Quality: Analyze the line quality in the artwork. Rate it on a scale of 0 (broken, shaky, or unclear) to 5 (smooth, sharp, and intentional). Justify your rating by describing the precision, consistency, and fluidity of the lines.
+Person: Evaluate the representation of the person in the artwork. Rate it on a scale of 0 (unrecognizable as a person) to 5 (highly proportional and detailed human figure). Explain the score, focusing on clarity, proportion, and completeness of the human depiction.
+Rotation: Identify any rotations or unconventional orientations of elements in the artwork. Rate it from 0 (no rotation or distortion) to 5 (severe or prominent rotation). Include an explanation, noting specific rotated elements and their impact on the composition.
+Perseveration: Detect any perseveration in the artwork, defined as repetitive or fixated patterns or elements. Rate it on a scale of 0 (no repetition) to 5 (excessive or dominating repetition). Justify your score by identifying repetitive elements and discussing their significance.
+Now, please provide the analysis in the specified JSON format without any extra text.

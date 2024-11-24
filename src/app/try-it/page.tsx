@@ -7,32 +7,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import ImageUpload from '@/components/ui/image-upload';
 import { useToast } from "@/components/ui/use-toast";
+import { scales, Scale } from '@/data/scales';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-interface Scale {
-  title: string;
-  description: string;
-  rating: number;
-  explanation: string;
-  imageUrl: string;
-}
-
-const sampleScale: Scale = {
-  title: "Prominence of Color",
-  description: "Evaluates how color is used throughout the artwork, including intensity and variety.",
-  rating: 4,
-  explanation: "Sample explanation for color prominence",
-  imageUrl: "/images/scales/color.svg"
-};
-
 export default function TryItPage() {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [analysisResults, setAnalysisResults] = useState<Scale[]>([sampleScale]);
+  const [analysisResults, setAnalysisResults] = useState<Scale[]>(scales);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -139,7 +124,7 @@ export default function TryItPage() {
                   <ResultsCard
                     title={scale.title}
                     description={scale.description}
-                    rating={scale.rating}
+                    rating={parseInt(scale.rating.split('/')[0])}
                     explanation={scale.explanation}
                     imageUrl={scale.imageUrl}
                   />
@@ -153,7 +138,7 @@ export default function TryItPage() {
                   key={scale.title}
                   title={scale.title}
                   description={scale.description}
-                  rating={scale.rating}
+                  rating={parseInt(scale.rating.split('/')[0])}
                   explanation={scale.explanation}
                   imageUrl={scale.imageUrl}
                 />
@@ -165,3 +150,4 @@ export default function TryItPage() {
     </div>
   );
 }
+
