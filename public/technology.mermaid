@@ -1,15 +1,40 @@
 graph TD
-    A[User] -->|Uploads Image| B[Frontend]
-    B -->|Send Image| C[Akash Network]
-    C -->|Distribute Processing| D[Llama Stack Distribution]
-    D -->|Inference API| E[Groq-powered Llama Model]
-    D -->|Agents API| F[FEATS Analysis Workflow]
-    D -->|Memory API| G[Datastax Integration]
-    D -->|Safety API| H[Content Moderation]
-    D -->|Scoring API| I[Result Evaluation]
-    E -->|Model Output| F
-    F -->|Analysis Results| I
-    I -->|Evaluated Results| G
-    G -->|Stored Results| B
-    B -->|Display Results| A
-    J[Research Dashboard] -->|Query Data| G
+    A[User] -->|Uploads image| B[Vercel & Next.js]
+    B -->|Initial processing & validation| C[Serverless Functions]
+    C -->|Send validated image| D[Akash Network]
+    D -->|Process image| E[Groq Hardware]
+    E -->|Analyze using FEATS criteria| F[Image Analysis Pipeline]
+    F -->|Store results| G[DataStax]
+    F -->|Generate explanations| H[LlamaStack API]
+    G -->|Retrieve data| B
+    H -->|Provide detailed explanations| B
+    B -->|Display results| A
+
+    subgraph "Frontend"
+        B
+    end
+
+    subgraph "Backend Services"
+        C
+        D
+        E
+        F
+    end
+
+    subgraph "Data Storage"
+        G
+    end
+
+    subgraph "AI Services"
+        H
+    end
+
+    classDef frontend fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef backend fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef storage fill:#bfb,stroke:#333,stroke-width:2px;
+    classDef ai fill:#fbf,stroke:#333,stroke-width:2px;
+
+    class B frontend;
+    class C,D,E,F backend;
+    class G storage;
+    class H ai;
