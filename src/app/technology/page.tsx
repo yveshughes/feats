@@ -43,21 +43,30 @@ export default function TechnologyPage() {
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-3xl font-bold mb-6">Our Technology Stack</h1>
-      <div className="mb-8">
-        <MermaidDiagram chart={mermaidChart} />
-      </div>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {technologies.map((tech) => (
-          <Card key={tech.name}>
+      <div className="flex flex-col lg:flex-row gap-8">
+        <div className="w-full lg:w-1/2 space-y-6">
+          {technologies.map((tech) => (
+            <Card key={tech.name} className="h-full">
+              <CardHeader>
+                <CardTitle>{tech.name}</CardTitle>
+                <CardDescription>{tech.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600">{tech.details}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        <div className="w-full lg:w-1/2 lg:sticky lg:top-8 self-start">
+          <Card className="h-full">
             <CardHeader>
-              <CardTitle>{tech.name}</CardTitle>
-              <CardDescription>{tech.description}</CardDescription>
+              <CardTitle>Technology Stack Diagram</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-gray-600">{tech.details}</p>
+              <MermaidDiagram chart={mermaidChart} />
             </CardContent>
           </Card>
-        ))}
+        </div>
       </div>
     </div>
   )
