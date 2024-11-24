@@ -56,14 +56,43 @@ export default function TechnologyPage() {
           </Card>
         ))}
       </div>
-      <Card className="w-full">
-        <CardHeader>
-          <CardTitle>Technology Stack Diagram</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <MermaidDiagram chart={mermaidChart} />
-        </CardContent>
-      </Card>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle>Technology Stack Diagram</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <MermaidDiagram chart={mermaidChart} />
+          </CardContent>
+        </Card>
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle>How Our Image Processing System Flows</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-gray-600 mb-4">
+              Our innovative image processing system operates seamlessly from upload to insight, leveraging advanced AI and distributed computing.
+            </p>
+            <ol className="list-decimal list-inside space-y-2">
+              <li><strong>User Uploads an Image:</strong> The journey starts with users uploading an image through a user-friendly interface.</li>
+              <li><strong>Distributed Processing on the Akash Network:</strong> The image is sent to the Akash Network, ensuring scalability and efficient task distribution.</li>
+              <li><strong>Moderation for Safety:</strong> The image is passed through a Safety API for content moderation, ensuring ethical compliance.</li>
+              <li><strong>AI-Driven Analysis:</strong> The image is processed by the Groq-powered Llama Model for precise inference and analysis.</li>
+              <li><strong>Scoring and Refinement:</strong> Results are evaluated by the Scoring API and specialized workflows like FEATS Analysis add context-specific insights.</li>
+              <li><strong>Data Storage and Dashboard Integration:</strong> Refined results are securely stored in Datastax and can be queried through an integrated Research Dashboard.</li>
+              <li><strong>Persistent Memory for Long-Term Insights:</strong> With the Memory API, data is preserved for historical analysis and deeper comparisons over time.</li>
+            </ol>
+            <h4 className="font-semibold mt-4 mb-2">The Flow&apos;s Benefits</h4>
+            <ul className="list-disc list-inside space-y-1 text-sm text-gray-600">
+              <li>Streamlined Processing: From upload to actionable insight in one smooth flow.</li>
+              <li>Scalable & Efficient: Distributed computing via Akash Network handles complex tasks at scale.</li>
+              <li>AI-Powered Precision: Groq-powered models deliver high accuracy.</li>
+              <li>Ethical by Design: Built-in content moderation ensures safety and compliance.</li>
+              <li>Actionable Insights: Research dashboards and data storage provide long-term usability.</li>
+            </ul>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }
